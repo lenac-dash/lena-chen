@@ -1,10 +1,10 @@
 :root {
   --bg: #EEE5E0;
   --text: #591F20;
-  --strong: #D5245F;
+  --strong: #30365E;
   --muted: #591F20;
   --line: #989FC0;
-  --link: #D5245F;
+  --link: #30365E;
   --chip: #989FC0;
   --sans: "Inter Tight", system-ui, -apple-system, "Segoe UI", sans-serif;
   box-sizing: border-box;
