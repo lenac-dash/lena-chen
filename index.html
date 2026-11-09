@@ -8,8 +8,309 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
-  <!-- External CSS -->
-  <link rel="stylesheet" href="style.css">
+  <style>
+    :root {
+      --bg: #EEE5E0;
+      --text: #591F20;
+      --strong: #D5245F;
+      --muted: #591F20;
+      --line: #989FC0;
+      --link: #D5245F;
+      --chip: #989FC0;
+      --sans: "Inter Tight", system-ui, -apple-system, "Segoe UI", sans-serif;
+      box-sizing: border-box;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+    *, *::before, *::after {
+      box-sizing: inherit;
+    }
+    html {
+      background: var(--bg);
+      scroll-behavior: smooth;
+      scroll-padding-top: 1.5rem;
+    }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 1rem;
+      line-height: 1.65;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+    a {
+      color: var(--link);
+      text-underline-offset: .18em;
+    }
+    a:focus-visible {
+      outline: 2px solid var(--link);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+    .wrap {
+      max-width: 44rem;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+    header.top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    header.top .name {
+      font-weight: 600;
+      color: var(--strong);
+      text-decoration: none;
+      font-size: 1.05rem;
+    }
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .95rem;
+    }
+    nav a:hover, nav a[aria-current="page"] {
+      color: var(--strong);
+    }
+    .mail {
+      font-size: .95rem;
+    }
+    .intro {
+      padding: 3rem 0 .5rem;
+    }
+    h1 {
+      font-size: 2.25rem;
+      line-height: 1.15;
+      font-weight: 600;
+      color: var(--strong);
+      letter-spacing: -.02em;
+      margin: 0 0 .75rem;
+    }
+    .sub {
+      color: var(--muted);
+      margin: 0;
+      max-width: 34rem;
+    }
+    .kicker {
+      color: var(--muted);
+      font-size: .9rem;
+      margin: 0 0 .5rem;
+    }
+    section {
+      padding-top: 3rem;
+    }
+    h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--strong);
+      margin: 0 0 1rem;
+      letter-spacing: -.01em;
+    }
+    .item {
+      display: grid;
+      grid-template-columns: 11rem 1fr;
+      gap: 0 1.25rem;
+      padding: 1.25rem 0;
+      border-top: 1px solid var(--line);
+    }
+    .item:first-of-type {
+      border-top: 0;
+    }
+    .when {
+      color: var(--muted);
+      font-size: .92rem;
+      padding-top: .1rem;
+    }
+    .location {
+      font-size: .85rem;
+      color: var(--muted);
+      display: block;
+      margin-top: .2rem;
+    }
+    .item h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--strong);
+      margin: 0;
+    }
+    .item .role {
+      font-size: .95rem;
+      color: var(--text);
+      font-weight: 500;
+      margin: .1rem 0 .4rem;
+    }
+    .item p {
+      margin: .4rem 0 0;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+    .todo {
+      font-style: italic;
+    }
+    .bullet-list {
+      margin: .5rem 0 0;
+      padding-left: 1.1rem;
+      color: var(--muted);
+      font-size: .93rem;
+    }
+    .bullet-list li {
+      margin-bottom: .4rem;
+    }
+    .bullet-list strong {
+      color: var(--strong);
+      font-weight: 500;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      margin-top: .6rem;
+    }
+    .tags span {
+      background: var(--chip);
+      color: #FFFFFF;
+      font-size: .8rem;
+      padding: .1rem .55rem;
+      border-radius: 999px;
+    }
+    .course-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      margin-top: .6rem;
+    }
+    .course-list span {
+      font-size: .85rem;
+      color: #FFFFFF;
+      background: var(--chip);
+      padding: .2rem .6rem;
+      border-radius: 4px;
+    }
+    .list a.entry {
+      display: block;
+      padding: 1.1rem 0;
+      border-top: 1px solid var(--line);
+      text-decoration: none;
+      color: inherit;
+    }
+    .list a.entry:first-child {
+      border-top: 0;
+    }
+    .entry .head {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: baseline;
+    }
+    .entry .title {
+      font-weight: 600;
+      color: var(--strong);
+      font-size: 1.05rem;
+    }
+    .entry:hover .title {
+      color: var(--link);
+      text-decoration: underline;
+    }
+    .entry .date {
+      color: var(--muted);
+      font-size: .9rem;
+      white-space: nowrap;
+    }
+    .entry p {
+      margin: .25rem 0 .5rem;
+      color: var(--text);
+    }
+    .detail {
+      padding-top: 2.5rem;
+    }
+    .detail .back {
+      font-size: .95rem;
+    }
+    .hint {
+      color: var(--muted);
+      font-size: .9rem;
+      margin-top: 1.5rem;
+    }
+    body[data-view="projects"] .v-home,
+    body[data-view="projects"] .v-writing,
+    body[data-view="projects"] .v-detail,
+    body[data-view="writing"] .v-home,
+    body[data-view="writing"] .v-projects,
+    body[data-view="writing"] .v-detail,
+    body[data-view="detail"] .v-home,
+    body[data-view="detail"] .v-projects,
+    body[data-view="detail"] .v-writing,
+    body[data-view="home"] .v-projects,
+    body[data-view="home"] .v-writing,
+    body[data-view="home"] .v-detail {
+      display: none;
+    }
+    footer {
+      margin-top: 5rem;
+      padding: 2rem 0 3rem;
+      border-top: 1px solid var(--line);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem 3rem;
+      justify-content: space-between;
+      font-size: .92rem;
+      color: var(--muted);
+    }
+    footer strong {
+      display: block;
+      color: var(--strong);
+      margin-bottom: .4rem;
+      font-weight: 600;
+    }
+    footer ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    footer a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+    footer a:hover {
+      color: var(--strong);
+      text-decoration: underline;
+    }
+    footer p {
+      margin: 0;
+    }
+    .bottom {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+    @media (max-width: 34rem) {
+      .item {
+        grid-template-columns: 1fr;
+      }
+      h1 {
+        font-size: 1.9rem;
+      }
+    }
+  </style>
 </head>
 <body data-view="home">
   <div class="wrap">
@@ -23,7 +324,7 @@
           <li><a href="#writing" data-nav="writing">Writing</a></li>
         </ul>
       </nav>
-      <a class="mail" href="mailto:chenlixu.19@gmail.com">Email</a>
+      <a class="mail" href="mailto:lena.c2025@gmail.com">Email</a>
     </header>
 
     <main>
@@ -31,7 +332,7 @@
       <div class="v-home">
         <div class="intro">
           <h1>Lena C.</h1>
-          <p class="sub">Data analyst from Sydney, interested in agentic AI workflows, analytics and AI strategy. Nine years in Finance and Data across Software and Fintech.</p>
+          <p class="sub">Data analyst from Sydney, interested in agentic AI workflows, analytics and AI strategy. Nine years across banking, advisory, insurance and fintech.</p>
         </div>
 
         <section id="experience">
@@ -183,16 +484,27 @@
           <h1>Writing</h1>
         </div>
         <div class="list">
-          <a class="entry" href="#writing">
+          <a class="entry" href="https://medium.com/@lena.chen/swimming-against-the-current-my-finance-to-data-career-pivot-through-the-lens-of-an-ocean-swimming-2ed5e33a36f9" target="_blank" rel="noopener noreferrer">
             <div class="head">
-              <span class="title">My Finance-to-Data Career Pivot Through the Lens of an Ocean Swimming Addict
-</span>
+              <span class="title">My Finance-to-Data Career Pivot Through the Lens of an Ocean Swimming Addict</span>
               <span class="date">April 2025</span>
             </div>
-            <p>Link to medium article: https://medium.com/@lena.chen/swimming-against-the-current-my-finance-to-data-career-pivot-through-the-lens-of-an-ocean-swimming-2ed5e33a36f9.</p>
+            <p>Link to medium article: https://medium.com/@lena.chen/swimming-against-the-current-my-finance-to-data-career-pivot-through-the-lens-of-an-ocean-swimming-2ed5e33a36f9</p>
             <div class="tags">
               <span>#ai</span>
               <span>#analytics</span>
+              <span>#finance</span>
+            </div>
+          </a>
+          <a class="entry" href="https://medium.com/@lena.chen/going-the-distance-how-endurance-sports-shaped-my-finance-to-data-transformation-167d7ca3e18e" target="_blank" rel="noopener noreferrer">
+            <div class="head">
+              <span class="title">How Endurance Sports Transformed My Career From Finance to Data Analyst</span>
+              <span class="date">April 2025</span>
+            </div>
+            <p>Link to medium article: https://medium.com/@lena.chen/going-the-distance-how-endurance-sports-shaped-my-finance-to-data-transformation-167d7ca3e18e</p>
+            <div class="tags">
+              <span>#career</span>
+              <span>#data-analytics</span>
               <span>#finance</span>
             </div>
           </a>
@@ -230,7 +542,36 @@
     </footer>
   </div>
 
-  <!-- External JS -->
-  <script src="script.js"></script>
+  <script>
+    (function(){
+      var details = {
+        "project-n8n": ["Workflow automations in n8n", "Automations that take repetitive analyst work off the plate."],
+        "project-talk": ["Are dashboards still necessary with AI agents?", "A talk on what analysts keep, and what they hand over, once agents can answer questions directly."]
+      };
+      function route(){
+        var h = (location.hash || "").slice(1) || "top";
+        var view = "home";
+        if (h === "projects") view = "projects";
+        else if (h === "writing") view = "writing";
+        else if (details[h]) {
+          view = "detail";
+          document.getElementById("d-title").textContent = details[h][0];
+          document.getElementById("d-desc").textContent = details[h][1];
+        }
+        document.body.setAttribute("data-view", view);
+        document.querySelectorAll("nav a").forEach(function(a){
+          if (a.getAttribute("data-nav") === view) a.setAttribute("aria-current", "page");
+          else a.removeAttribute("aria-current");
+        });
+        if (view === "home") {
+          var el = document.getElementById(h);
+          if (el) el.scrollIntoView();
+          else window.scrollTo(0, 0);
+        } else window.scrollTo(0, 0);
+      }
+      window.addEventListener("hashchange", route);
+      route();
+    })();
+  </script>
 </body>
 </html>
